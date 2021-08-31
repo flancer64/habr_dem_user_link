@@ -1,0 +1,20 @@
+{
+  "name": "@flancer64/habr_dem_user_link",
+  "version": "0.1.0",
+  "description": "DEM demo: users with one-time link authentication",
+  "homepage": "https://github.com/flancer64/habr_dem_user_link",
+  "bugs": {
+    "url": "https://github.com/flancer64/habr_dem_user_link/issues",
+    "email": "alex@flancer32.com"
+  },
+  "license": "GPL-3.0-only",
+  "author": {
+    "name": "Alex Gusev",
+    "email": "alex@flancer64.com",
+    "url": "https://github.com/flancer64"
+  },
+  "repository": "github:flancer64/habr_dem_user_link",
+  "dependencies": {
+    "@teqfw/db": "*"
+  }
+}
