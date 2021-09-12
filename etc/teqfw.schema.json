@@ -1,7 +1,77 @@
 {
+  "entity": {
+    "user": {
+      "comment": "User registry.",
+      "attr": {
+        "id": {"type": "id"},
+        "email": {
+          "comment": "Email should be unique to get appropriate login link",
+          "type": "string"
+        }
+      },
+      "index": {
+        "uq_email": {"type": "unique", "attrs": ["email"]}
+      }
+    }
+  },
   "package": {
-    "app": {
-      "entity": {}
+    "user": {
+      "entity": {
+        "link": {
+          "comment": "One-time sign in codes with limited lifetime.",
+          "attr": {
+            "code": {
+              "comment": "Sign-in code.",
+              "type": "string"
+            },
+            "user_ref": {
+              "type": "ref"
+            },
+            "date_expired": {
+              "comment": "Date-time for sign-in code expiration.",
+              "type": "datetime"
+            }
+          },
+          "index": {
+            "PK": {"type": "primary", "attrs": ["code"]}
+          },
+          "relation": {
+            "user": {
+              "attrs": ["user_ref"],
+              "ref": {"path": "/user", "attrs": ["id"]}
+            }
+          }
+        },
+        "session": {
+          "comment": "Registry for opened sessions.",
+          "attr": {
+            "session_id": {
+              "comment": "Unique ID for user session.",
+              "type": "string"
+            },
+            "user_ref": {
+              "type": "ref"
+            },
+            "date_created": {
+              "comment": "Date-time for session registration.",
+              "type": "datetime",
+              "default": "current"
+            }
+          },
+          "index": {
+            "PK": {"type": "primary", "attrs": ["session_id"]}
+          },
+          "relation": {
+            "user": {
+              "attrs": ["user_ref"],
+              "ref": {
+                "path": "/user",
+                "attrs": ["id"]
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
